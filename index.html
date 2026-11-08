@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071d18">
+  <meta name="description" content="SACRED NOOR — a free Islamic digital companion with Quran, duas, prayer times, tasbeeh and more.">
+  <title>SACRED NOOR — Islamic Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Sacred Noor home">
+      <span class="brand-mark">☾</span><span><strong>SACRED <i>NOOR</i></strong><small>YOUR ISLAMIC COMPANION</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">☰</button>
+    <nav id="mainNav">
+      <a href="#quran">Quran</a><a href="#tasbeeh">Tasbeeh</a><a href="#hadith">Hadith</a><a href="#duas">Duas</a>
+      <a href="#prayer">Prayer</a><a href="#names">99 Names</a><a href="#quiz">Quiz</a><a href="#calendar">Calendar</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> A LITTLE LIGHT FOR EVERY DAY</div>
+        <h1>Find peace.<br><em>Remember Allah.</em></h1>
+        <p>A calm space for Quran, remembrance, authentic learning and everyday worship.</p>
+        <div class="hero-actions"><a class="btn btn-gold" href="#quran">Explore Quran <span>↗</span></a><a class="text-link" href="#prayer">Today's prayer times ↓</a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="moon">☾</div><div class="star star-a">✦</div><div class="star star-b">✧</div>
+        <div class="hero-arabic">السَّلَامُ عَلَيْكُمْ</div>
+        <div class="hero-caption">PEACE BE UPON YOU</div>
+      </div>
+    </section>
+
+    <section class="daily-strip">
+      <div><span class="strip-label">TODAY'S REMINDER</span><p id="dailyReminder">Indeed, in the remembrance of Allah do hearts find rest. <small>— Quran 13:28 (meaning)</small></p></div>
+      <div class="date-chip"><span>HIJRI DATE</span><strong id="topHijri">Loading…</strong></div>
+    </section>
+
+    <section class="section" id="prayer">
+      <div class="section-heading"><div><span class="eyebrow">STAY CONNECTED</span><h2>Prayer <em>times</em></h2></div><span class="live-dot">● LIVE DATA</span></div>
+      <div class="prayer-toolbar">
+        <label class="city-field">City <input id="cityInput" value="Sangli" placeholder="Enter city"></label>
+        <label class="city-field">Country <input id="countryInput" value="India" placeholder="Enter country"></label>
+        <button class="btn btn-outline" id="loadPrayer">Update times</button>
+        <button class="btn btn-quiet" id="useLocation">Use my location</button>
+      </div>
+      <p class="muted small" id="prayerStatus">Prayer times are calculated using the selected location. Verify the calculation method and Asr school for your local mosque.</p>
+      <div class="prayer-grid" id="prayerGrid"><div class="loading-card">Loading prayer times…</div></div>
+      <div class="method-note">Calculation source: AlAdhan API · Asr school: Hanafi · Method: Muslim World League. Local mosque timetables may differ.</div>
+    </section>
+
+    <section class="section" id="quran">
+      <div class="section-heading"><div><span class="eyebrow">THE FINAL REVELATION</span><h2>Quran <em>Explorer</em></h2></div><span class="section-icon">۞</span></div>
+      <div class="panel quran-panel">
+        <div class="quran-controls">
+          <label>Choose Surah<select id="surahSelect"><option value="">Loading Surahs…</option></select></label>
+          <label>Translation<select id="translationSelect"><option value="en.sahih">English — Sahih International</option><option value="en.pickthall">English — Pickthall</option></select></label>
+          <button class="btn btn-gold" id="loadSurah">Read Surah</button>
+        </div>
+        <div class="surah-intro" id="surahIntro"><div class="arabic-title">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div><p>Select a Surah to begin reading.</p></div>
+        <div id="ayahList" class="ayah-list"><div class="empty-state">Your Quran reading space will appear here.</div></div>
+        <p class="source-note">Text and translations are loaded from AlQuran Cloud. Translations are interpretations of the meanings, not a replacement for the Arabic Quran or qualified tafsir.</p>
+      </div>
+    </section>
+
+    <section class="section two-column">
+      <div id="tasbeeh">
+        <div class="section-heading"><div><span class="eyebrow">REMEMBERANCE</span><h2>Digital <em>Tasbeeh</em></h2></div></div>
+        <div class="panel tasbeeh-panel">
+          <div class="dhikr-arabic" id="dhikrArabic">سُبْحَانَ اللَّهِ</div>
+          <select id="dhikrSelect" aria-label="Choose dhikr">
+            <option value="subhan">SubhanAllah</option><option value="hamd">Alhamdulillah</option><option value="akbar">Allahu Akbar</option><option value="istighfar">Astaghfirullah</option><option value="custom">Custom Dhikr</option>
+          </select>
+          <input id="customDhikr" class="hidden" placeholder="Type your dhikr">
+          <div class="counter" id="tasbeehCount">0</div><div class="muted small">REMEMBRANCES</div>
+          <button class="tasbeeh-button" id="countButton" aria-label="Increase tasbeeh count"><span>+</span></button>
+          <div class="tasbeeh-actions"><button class="btn btn-outline" id="resetCount">Reset</button><span class="muted small">Your count is saved on this device.</span></div>
+        </div>
+      </div>
+      <div id="hadith">
+        <div class="section-heading"><div><span class="eyebrow">PROPHETIC GUIDANCE</span><h2>Daily <em>Hadith</em></h2></div><span class="section-icon">۞</span></div>
+        <div class="panel hadith-panel">
+          <div class="hadith-tag">A REMINDER FOR TODAY</div><div class="hadith-arabic small-arabic">مَنْ لَا يَرْحَمْ لَا يُرْحَمْ</div>
+          <blockquote id="hadithText">The one who does not show mercy will not be shown mercy.</blockquote>
+          <p class="muted small" id="hadithSource">Sahih al-Bukhari 6013 · English meaning</p>
+          <button class="btn btn-outline" id="anotherHadith">Read another hadith ↗</button>
+          <p class="source-note">English wording may vary by translation. Check the cited collection for the full text and context.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="duas">
+      <div class="section-heading"><div><span class="eyebrow">WORDS OF SUPPLICATION</span><h2>Dua <em>Library</em></h2></div></div>
+      <div class="filter-row" id="duaFilters"><button class="filter active" data-filter="all">All duas</button><button class="filter" data-filter="quran">From Quran</button><button class="filter" data-filter="daily">Daily life</button></div>
+      <div class="dua-grid" id="duaGrid"></div>
+    </section>
+
+    <section class="section" id="names">
+      <div class="section-heading"><div><span class="eyebrow">ASMA UL HUSNA</span><h2>99 Names <em>of Allah</em></h2></div><span class="section-icon">ﷲ</span></div>
+      <p class="muted section-subtitle">Explore the beautiful names and their commonly given English meanings.</p>
+      <div class="name-tools"><input id="nameSearch" placeholder="Search by name or meaning…" aria-label="Search names"><span id="nameCount">99 names</span></div>
+      <div class="names-grid" id="namesGrid"></div>
+      <p class="source-note">The displayed list follows a commonly used enumeration. Scholarly discussions differ on the enumeration and some translations of the Names.</p>
+    </section>
+
+    <section class="section" id="quiz">
+      <div class="section-heading"><div><span class="eyebrow">TEST YOUR KNOWLEDGE</span><h2>Islamic <em>Quiz</em></h2></div><span class="section-icon">✧</span></div>
+      <div class="panel quiz-panel">
+        <div class="quiz-top"><span class="hadith-tag">KNOWLEDGE CHECK</span><span id="quizProgress">Question 1 of 8</span></div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <h3 id="quizQuestion">Loading question…</h3><div id="quizOptions" class="quiz-options"></div>
+        <div id="quizFeedback" class="quiz-feedback" aria-live="polite"></div>
+        <div class="quiz-bottom"><span id="quizScore">Score: 0</span><button class="btn btn-gold" id="nextQuestion" disabled>Next question →</button></div>
+      </div>
+    </section>
+
+    <section class="section" id="calendar">
+      <div class="section-heading"><div><span class="eyebrow">LUNAR DATES</span><h2>Hijri <em>Calendar</em></h2></div></div>
+      <div class="panel calendar-panel">
+        <div class="calendar-date"><div class="calendar-moon">☾</div><div><span class="eyebrow">TODAY'S HIJRI DATE</span><h3 id="calendarHijri">Loading…</h3><p id="gregorianDate" class="muted"></p></div></div>
+        <div class="calendar-info"><strong>About the Hijri calendar</strong><p>The Islamic calendar is lunar. Dates can differ by a day depending on local moon-sighting decisions and the calendar method used. Confirm important dates with your local mosque or trusted authority.</p></div>
+        <button class="btn btn-outline" id="refreshCalendar">Refresh date</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#home"><span class="brand-mark">☾</span><span><strong>SACRED <i>NOOR</i></strong><small>A LITTLE LIGHT FOR EVERY DAY</small></span></a>
+    <p>Built to encourage remembrance, learning and reflection.</p>
+    <p class="footer-disclaimer">Please verify religious matters with reliable scholars and primary sources. This website is an educational companion, not a source of fatwas.</p>
+    <span class="copyright">© <span id="year"></span> SACRED NOOR</span>
+  </footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
